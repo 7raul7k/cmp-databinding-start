@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +6,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./app.component.css'],
   encapsulation:ViewEncapsulation.None
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit,OnDestroy{
   serverElements = [{type:'server', name:'Testserver', content:'Just a test!'}];
   newServerName = '';
   newServerContent = '';
@@ -28,5 +28,16 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
+  }
+
+  onChangeFirst(){
+    this.serverElements[0].name = 'Changed!';
+  }
+
+  ngOnDestroy() {
+  }
+
+    onDestroyFirst(){
+    this.serverElements.splice(0,1);
   }
 }
